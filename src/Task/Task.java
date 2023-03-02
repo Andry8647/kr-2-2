@@ -9,11 +9,12 @@ public abstract class Task {
     private int idGenerator = 0;
     private String title;
     private Type type;
+    private TaskTypeDay taskTypeDay;
     private  int id;
     private LocalDateTime dateTime;
     private String description;
 
-    public Task(String title, Type type , String description,LocalDateTime dateTime) {
+    public Task(String title,String description,LocalDateTime dateTime, Type type ) {
         idGenerator++;
         id = idGenerator;
         this.title = title;
@@ -21,6 +22,8 @@ public abstract class Task {
         this.description = description;
         this.dateTime = dateTime;
     }
+
+    public abstract TaskTypeDay getTaskTypeDay();
 
     public abstract boolean appearsIn (LocalDate localDate);
 

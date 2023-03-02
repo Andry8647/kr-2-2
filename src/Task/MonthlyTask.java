@@ -6,13 +6,18 @@ import java.time.LocalDateTime;
 public class MonthlyTask extends Task {
 
 
-    public MonthlyTask(String title, Type type, String description, LocalDateTime dateTime) {
-        super(title, type, description,dateTime);
+    public MonthlyTask(String title,String description, LocalDateTime dateTime, Type type ) {
+        super(title,description,dateTime, type );
     }
 
     @Override
+    public TaskTypeDay getTaskTypeDay() {
+        return TaskTypeDay.MONTHLY;
+    }
+    @Override
     public boolean appearsIn(LocalDate localDate) {
-        return localDate.getDayOfMonth() == getDateTime().toLocalDate().getDayOfMonth();
+        LocalDate taskDate = this.getDateTime().toLocalDate();
+        return localDate.equals(taskDate) || localDate.isAfter(taskDate);
 
     }
 }

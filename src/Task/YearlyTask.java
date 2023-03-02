@@ -5,12 +5,17 @@ import java.time.LocalDateTime;
 
 public class YearlyTask extends Task {
 
-    public YearlyTask(String title, Type type, String description, LocalDateTime dateTime) {
-        super(title, type, description,dateTime);
+    public YearlyTask(String title,String description, LocalDateTime dateTime, Type type ) {
+        super(title,description,dateTime, type );
     }
 
     @Override
+    public TaskTypeDay getTaskTypeDay() {
+        return TaskTypeDay.YEARLY;
+    }
+    @Override
     public boolean appearsIn(LocalDate localDate) {
-        return localDate.getDayOfYear() == getDateTime().toLocalDate().getDayOfYear();
+        LocalDate taskDate = this.getDateTime().toLocalDate();
+        return localDate.equals(taskDate) || localDate.isAfter(taskDate);
     }
 }

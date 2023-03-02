@@ -5,12 +5,21 @@ import java.time.LocalDateTime;
 
 public class DailyTask extends Task {
 
-    public DailyTask(String title, Type type, String description, LocalDateTime dateTime) {
-        super(title, type, description,dateTime);
+
+    public DailyTask(String title,String description, LocalDateTime dateTime, Type type ) {
+        super(title,description,dateTime, type );
+
     }
 
     @Override
+    public TaskTypeDay getTaskTypeDay() {
+        return TaskTypeDay.DAILY;
+    }
+
+
+    @Override
     public boolean appearsIn(LocalDate localDate) {
-        return true;
+        LocalDate taskDate = this.getDateTime().toLocalDate();
+        return localDate.equals(taskDate) || localDate.isAfter(taskDate);
     }
 }

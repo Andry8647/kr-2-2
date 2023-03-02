@@ -11,44 +11,30 @@ public class TaskService {
     private Collection<Task> removedTask = new HashSet<>();
 
 
-    public void add(TaskTypeDay taskTypeDay, Type type, String title, String description, LocalDateTime dateTime){
+    public void add( Task task ){
+        this.taskMap.put(task.getId(), task);
+    }
+    public Collection<Task> getAllTask(){
+        return this.taskMap.values();
+    }
 
 
+    public Collection<Task> getTaskForDate(LocalDate localDate) {
 
-        switch (taskTypeDay){
-            case ONETIME:
-                OneTimeTask oneTimeTask = new OneTimeTask(title,type,description,dateTime);
-            case DAILY:
-                DailyTask dailyTask = new DailyTask(title,type,description,dateTime);
-            case WEEKLY:
-                WeeklyTask weeklyTask = new WeeklyTask(title,type,description,dateTime);
-            case MONTHLY:
-                MonthlyTask monthlyTask = new MonthlyTask(title,type,description,dateTime);
-            case YEARLY:
-                YearlyTask yearlyTask = new YearlyTask(title,type,description,dateTime);
+        TreeSet<Task>  taskForDate = new TreeSet<>();
+        for( Task task : taskMap.values()){
+            if(task.appearsIn(localDate)){
+                taskForDate.add(task);
+            }
         }
-
-
-
-//        var putTaskType = taskTypeDay.createTask();
-//        putTaskType.askDate();
-
-//        Scanner scanner = new Scanner(System.in);
-//        var putTaskType = taskTypeDay.createTask();
-//        taskMap.putIfAbsent(putTaskType.getId(),putTaskType);
-//        System.out.println("Введите Заголовок Задачи ");
-//        putTaskType.setTitle(scanner.next());
-//        System.out.println("Введите Описание Задачи ");
-//        putTaskType.setDescription(scanner.next());
-//        System.out.println("Введите Тип Задачи ");
-//        for (Type type : Type.values()){
-//            System.out.println(type);
-//        }
-
-
-
-
-
+        return taskForDate;
+    }
+    public void removeTask(int id) throws TaskNotFoundExeption{
+        if(this.taskMap.containsKey(id)){
+            this.taskMap.remove(id);
+        }else {
+            throw new TaskNotFoundExeption();
+        }
     }
 
 }
