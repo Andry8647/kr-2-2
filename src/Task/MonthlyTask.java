@@ -14,6 +14,7 @@ public class MonthlyTask extends Task {
     public TaskTypeDay getTaskTypeDay() {
         return TaskTypeDay.MONTHLY;
     }
+
     @Override
     public boolean appearsIn(LocalDate localDate) {
         LocalDate taskDate = this.getDateTime().toLocalDate();

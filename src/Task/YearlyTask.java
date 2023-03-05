@@ -13,6 +13,7 @@ public class YearlyTask extends Task {
     public TaskTypeDay getTaskTypeDay() {
         return TaskTypeDay.YEARLY;
     }
+
     @Override
     public boolean appearsIn(LocalDate localDate) {
         LocalDate taskDate = this.getDateTime().toLocalDate();

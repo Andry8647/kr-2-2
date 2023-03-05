@@ -14,6 +14,7 @@ public class WeeklyTask extends Task {
         return TaskTypeDay.WEEKLY;
     }
     @Override
+
     public boolean appearsIn(LocalDate localDate) {
         LocalDate taskDate = this.getDateTime().toLocalDate();
         return localDate.equals(taskDate) || localDate.getDayOfWeek() == taskDate.getDayOfWeek() ;

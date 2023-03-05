@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 
 public abstract class Task {
 
+
     private static int idGenerator = 0;
     private String title;
     private Type type;

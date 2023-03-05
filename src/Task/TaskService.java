@@ -27,6 +27,7 @@ public class TaskService {
                 taskForDate.add(task);
             }
         }
+
         return taskForDate;
     }
     public void removeTask(int id) throws TaskNotFoundExeption{
