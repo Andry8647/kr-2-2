@@ -55,7 +55,7 @@ public class Main {
 
     }
     public static void addTask(Scanner scanner){
-        String title = readTitle("Введите Заголовок задачи: " , scanner);
+        String title = readTitle("Введите Заголовок задачи:" , scanner);
         String description = readDescription("Введите описание задачи: " , scanner);
         LocalDateTime localDateTime = readDateTime(scanner);
         Type type = readType(scanner);
@@ -80,7 +80,6 @@ public class Main {
     private static Type readType( Scanner scanner){
         while (true) {
             try {
-                System.out.println("Выберите тип:");
                 for (Type type : Type.values()) {
                     System.out.println(type.ordinal() + ". " + localType(type));
                 }

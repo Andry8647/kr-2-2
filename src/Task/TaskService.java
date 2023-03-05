@@ -32,6 +32,7 @@ public class TaskService {
     public void removeTask(int id) throws TaskNotFoundExeption{
         if(this.taskMap.containsKey(id)){
             this.taskMap.remove(id);
+            removedTask.add(taskMap.get(id));
         }else {
             throw new TaskNotFoundExeption();
         }
